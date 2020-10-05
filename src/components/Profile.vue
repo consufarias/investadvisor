@@ -10,7 +10,7 @@
     <v-row justify="center" class="font-weight-bold mt-2">
       <h2>{{ name }}</h2>
     </v-row>
-    <v-row justify="center" class="white--text mb-16">
+    <v-row justify="center" class="white--text mb-4">
       <div>
         {{ email }}
       </div>
