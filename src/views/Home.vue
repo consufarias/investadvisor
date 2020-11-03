@@ -19,13 +19,24 @@
     <v-content>
       <profile v-if="tab === 'Profile'" />
       <history v-else-if="tab === 'History'" />
-      <recomendations v-else-if="tab === 'Recomendations'" />
+      <recomendations
+        v-else-if="tab === 'Recomendations'"
+        @show-briefcase="showBriefcase"
+      />
+      <briefcase
+        v-else-if="tab === 'briefcase'"
+        @open-briefcase="openBriefcase"
+      />
+      <my-briefcase
+        v-else-if="tab === 'myBriefcase'"
+        :selectedBriefcase="selectedBriefcase"
+        @show-briefcase="showBriefcase"
+      />
       <dashboard v-else />
     </v-content>
 
     <v-bottom-navigation
       fixed
-      :value="value"
       color="background"
       background-color="primary"
       grow
@@ -48,12 +59,15 @@ import Dashboard from '@/components/Dashboard'
 import Recomendations from '@/components/Recomendations'
 import Profile from '@/components/Profile'
 import History from '@/components/History'
+import Briefcase from '@/components/Briefcase'
+import MyBriefcase from '@/components/MyBriefcase'
 
 export default {
   data() {
     return {
       tab: 'Dashboard',
       items: ['Dashboard', 'Recomendaciones'],
+      selectedBriefcase: {},
     }
   },
   components: {
@@ -61,6 +75,17 @@ export default {
     Recomendations,
     Profile,
     History,
+    Briefcase,
+    MyBriefcase,
+  },
+  methods: {
+    showBriefcase() {
+      this.tab = 'briefcase'
+    },
+    openBriefcase(briefcase) {
+      this.tab = 'myBriefcase'
+      this.selectedBriefcase = briefcase
+    },
   },
 }
 </script>

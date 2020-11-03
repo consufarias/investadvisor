@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recomendations-container">
     <v-list subheader two-line>
       <v-list-item
         v-for="recomendation in recomendations"
@@ -28,6 +28,13 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
+    <v-btn
+      class="transparent briefcase-btn mt-4 white--text"
+      @click="showBriefcase"
+    >
+      <v-icon color="primary" class="mr-2">mdi-briefcase</v-icon>
+      Portafolios de Inversion
+    </v-btn>
   </div>
 </template>
 
@@ -69,5 +76,19 @@ export default {
       ],
     }
   },
+  methods: {
+    showBriefcase() {
+      this.$emit('show-briefcase')
+    },
+  },
 }
 </script>
+<style lang="scss">
+.recomendations-container {
+  display: flex;
+  flex-direction: column;
+}
+.briefcase-btn {
+  height: 70px !important;
+}
+</style>
