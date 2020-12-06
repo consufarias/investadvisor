@@ -1,9 +1,9 @@
 steps:
-  - name: yarn:1.22.5
-    entrypoint: yarn
+  - name: node:10.15.1
+    entrypoint: npm
     args: ['install']
-  - name: yarn:1.22.5
-    entrypoint: yarn
+  - name: node:10.15.1
+    entrypoint: npm
     args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']
