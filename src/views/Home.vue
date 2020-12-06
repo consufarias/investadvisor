@@ -1,5 +1,5 @@
 <template>
-  <v-layout row>
+  <v-layout class="d-flex flex-column">
     <v-card width="100%">
       <v-toolbar color="primary" dark flat>
         <v-btn icon @click="tab = 'Profile'">
