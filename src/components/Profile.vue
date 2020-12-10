@@ -2,17 +2,15 @@
   <div>
     <v-row justify="center" class="fill-height mt-2">
       <v-avatar color="grey" size="164">
-        <v-img
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQHgzY9l96h7xw/profile-displayphoto-shrink_200_200/0?e=1603324800&v=beta&t=T5hCj1kBDG-3AqpkxtPvOKWXWWyGXGXL9yPmiYMPG_c"
-        ></v-img>
+        <v-img :src="userInfo.img" />
       </v-avatar>
     </v-row>
     <v-row justify="center" class="font-weight-bold mt-2">
-      <h2>{{ name }}</h2>
+      <h2>{{ userInfo.name }}</h2>
     </v-row>
     <v-row justify="center" class="white--text mb-4">
       <div>
-        {{ email }}
+        {{ userInfo.email }}
       </div>
     </v-row>
     <v-list subheader two-line dark>
@@ -24,7 +22,7 @@
         <v-list-item-content>
           <v-list-item-title v-text="datum.type"></v-list-item-title>
 
-          <v-list-item-subtitle v-text="datum.value"></v-list-item-subtitle>
+          <v-list-item-subtitle v-text="userInfo[datum.value]" />
         </v-list-item-content>
 
         <v-list-item-action v-if="datum.edit">
@@ -38,6 +36,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
@@ -46,22 +46,25 @@ export default {
       personalInformation: [
         {
           type: 'Fecha de Nacimiento',
-          value: '21-06-1998',
+          value: 'birthdate',
           icon: 'mdi-cake-variant',
         },
         {
           type: 'Tipo de Perfil',
-          value: 'Riesgoso',
+          value: 'profile',
           icon: 'mdi-face-profile-woman',
           edit: true,
         },
         {
           type: 'Patrimonio',
-          value: '$13.580.000',
+          value: 'estate',
           icon: 'mdi-cash-multiple',
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters(['userInfo']),
   },
 }
 </script>

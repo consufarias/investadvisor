@@ -6,7 +6,7 @@
           <v-icon>mdi-account</v-icon>
         </v-btn>
 
-        <v-toolbar-title>Hola Marlyn</v-toolbar-title>
+        <v-toolbar-title>Hola {{ userInfo.name }}</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -16,7 +16,7 @@
       </v-toolbar>
     </v-card>
 
-    <v-content>
+    <v-main>
       <profile v-if="tab === 'Profile'" />
       <history v-else-if="tab === 'History'" />
       <recomendations
@@ -33,7 +33,7 @@
         @show-briefcase="showBriefcase"
       />
       <dashboard v-else />
-    </v-content>
+    </v-main>
 
     <v-bottom-navigation
       fixed
@@ -61,6 +61,7 @@ import Profile from '@/components/Profile'
 import History from '@/components/History'
 import Briefcase from '@/components/Briefcase'
 import MyBriefcase from '@/components/MyBriefcase'
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -77,6 +78,9 @@ export default {
     History,
     Briefcase,
     MyBriefcase,
+  },
+  computed: {
+    ...mapGetters(['userInfo']),
   },
   methods: {
     showBriefcase() {
